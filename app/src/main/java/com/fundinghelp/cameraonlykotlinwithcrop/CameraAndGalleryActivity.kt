@@ -12,7 +12,7 @@ import com.theartofdev.edmodo.cropper.CropImage
 import com.theartofdev.edmodo.cropper.CropImageView
 import java.io.File
 
-class MainActivity : AppCompatActivity() {
+class CameraAndGalleryActivity : AppCompatActivity() {
     private var fileName: String? = null
     var file: File? = null
     override fun onCreate(savedInstanceState: Bundle?) {
