@@ -12,19 +12,38 @@ import android.os.Bundle
 import android.os.Parcelable
 import android.provider.MediaStore
 import android.system.ErrnoException
+import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.theartofdev.edmodo.cropper.CropImageView
 import kotlinx.android.synthetic.main.activity_camera_or_gallery.*
 import java.io.File
 import java.io.FileNotFoundException
 import java.util.*
 
 class CameraOrGalleryActivity : AppCompatActivity() {
+    private var mCropImageView: CropImageView? = null
     private var mCropImageUri: Uri? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_camera_or_gallery)
+        mCropImageView = findViewById(R.id.mCropImageView) as CropImageView
+        buttonAction()
     }
+
+    private fun buttonAction() {
+        btnRotate!!.setOnClickListener {
+            mCropImageView!!.rotateImage(90)
+        };
+        btnflip_horizontally!!.setOnClickListener {
+            mCropImageView!!.flipImageHorizontally()
+        };
+        btnflip_vertically!!.setOnClickListener {
+            mCropImageView!!.flipImageVertically()
+        }
+    }
+
     fun onLoadImageClick(view: View) {
 
         startActivityForResult(getPickImageChooserIntent(), 200)
@@ -39,7 +58,7 @@ class CameraOrGalleryActivity : AppCompatActivity() {
         val packageManager = packageManager
 
         // collect all camera intents
-        /* val captureIntent = Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE)
+         val captureIntent = Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE)
          val listCam = packageManager.queryIntentActivities(captureIntent, 0)
          for (res in listCam) {
              val intent = Intent(captureIntent)
@@ -49,7 +68,7 @@ class CameraOrGalleryActivity : AppCompatActivity() {
                  intent.putExtra(MediaStore.EXTRA_OUTPUT, outputFileUri)
              }
              allIntents.add(intent)
-         }*/
+         }
 
         // collect all gallery intents
         val galleryIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
@@ -139,5 +158,18 @@ class CameraOrGalleryActivity : AppCompatActivity() {
         }
 
         return false
+    }
+    fun onCropImageClick(view: View) {
+        val cropped = mCropImageView!!.getCroppedImage(500, 500)
+          if (cropped != null){
+            mCropImageView!!.setImageBitmap(cropped)
+        }
+    }
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
+        if (mCropImageUri != null && grantResults.size > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            mCropImageView!!.setImageUriAsync(mCropImageUri)
+        } else {
+            Toast.makeText(this, "Required permissions are not granted", Toast.LENGTH_LONG).show()
+        }
     }
 }
