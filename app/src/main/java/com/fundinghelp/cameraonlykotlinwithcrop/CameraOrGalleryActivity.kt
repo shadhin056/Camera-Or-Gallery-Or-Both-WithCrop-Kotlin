@@ -29,6 +29,7 @@ class CameraOrGalleryActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_camera_or_gallery)
         mCropImageView = findViewById(R.id.mCropImageView) as CropImageView
+        startActivityForResult(getPickImageChooserIntent(), 200)
         buttonAction()
     }
 
