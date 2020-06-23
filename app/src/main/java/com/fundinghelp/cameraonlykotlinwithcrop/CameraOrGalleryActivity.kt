@@ -71,11 +71,11 @@ class CameraOrGalleryActivity : AppCompatActivity() {
          }
 
         // collect all gallery intents
-        val galleryIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+        //val galleryIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
         //galleryIntent.type = "image/*"
-        val listGallery = packageManager.queryIntentActivities(galleryIntent, 0)
+        val listGallery = packageManager.queryIntentActivities(intent, 0)
         for (res in listGallery) {
-            val intent = Intent(galleryIntent)
+            val intent = Intent(intent)
             intent.component = ComponentName(res.activityInfo.packageName, res.activityInfo.name)
             intent.setPackage(res.activityInfo.packageName)
             allIntents.add(intent)

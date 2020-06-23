@@ -41,27 +41,39 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:weightSum="6">
+            android:orientation="vertical">
 
             <LinearLayout
-
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:gravity="center_vertical"
+                android:orientation="horizontal"
                 android:weightSum="2">
 
                 <Button
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:background="@color/white"
                     android:drawableLeft="@drawable/picture"
                     android:drawablePadding="2dp"
                     android:gravity="center_vertical"
                     android:onClick="onLoadImageClick"
                     android:padding="2dp"
-                    android:text="Select Image from Camera"
+                    android:text="   Select Image from Camera"
+                    android:textAllCaps="false"
+                    android:textSize="10sp" />
+
+                <Button
+                    android:id="@+id/btnSubmit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@color/white"
+                    android:drawableLeft="@drawable/send"
+                    android:drawablePadding="2dp"
+                    android:gravity="center_vertical"
+                    android:padding="2dp"
+                    android:text="    Submit"
                     android:textAllCaps="false"
                     android:textSize="10sp" />
             </LinearLayout>
@@ -80,26 +92,12 @@
                     android:drawableLeft="@drawable/crop_symbol"
                     android:drawablePadding="2dp"
                     android:gravity="center_vertical"
-                    android:padding="2dp"
-                    android:text="Crop And Submit"
-                    android:textAllCaps="false"
                     android:onClick="onCropImageClick"
+                    android:padding="2dp"
+                    android:text="   Crop"
+                    android:textAllCaps="false"
                     android:textSize="10sp" />
 
-                <Button
-                    android:id="@+id/btnSubmit"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/white"
-                    android:drawableLeft="@drawable/image_select"
-                    android:drawablePadding="2dp"
-                    android:gravity="center_vertical"
-                    android:padding="2dp"
-                    android:text="Submit        "
-                    android:textAllCaps="false"
-
-                    android:textSize="10sp"
-                    android:visibility="gone" />
 
                 <Button
                     android:id="@+id/btnflip_horizontally"
@@ -111,7 +109,7 @@
                     android:drawablePadding="2dp"
                     android:gravity="center_vertical"
                     android:padding="2dp"
-                    android:text="Flip horizontally"
+                    android:text=" Flip horizontally"
                     android:textAllCaps="false"
 
                     android:textSize="10sp" />
@@ -133,7 +131,7 @@
                     android:drawablePadding="2dp"
                     android:gravity="center_vertical"
                     android:padding="2dp"
-                    android:text="Flip vertically"
+                    android:text="   Flip vertically"
                     android:textAllCaps="false"
                     android:textSize="10sp" />
 
@@ -147,7 +145,7 @@
                     android:drawablePadding="2dp"
                     android:gravity="center_vertical"
                     android:padding="2dp"
-                    android:text="Rotate Image"
+                    android:text="  Rotate Image"
                     android:textAllCaps="false"
 
                     android:textSize="10sp" />
